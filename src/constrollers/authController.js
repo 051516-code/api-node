@@ -1,7 +1,7 @@
 
 
 const signup = (req, res) => {
-    res.send("hla desde la autenticacion")
+    res.send("hola desde la autenticacion")
 }   
 
 

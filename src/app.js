@@ -3,7 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const morgan =require('morgan');
 const indexRoute = require('./routes')
+const session = require('express-session')
+const mongoDB = require('./config/noSql/mongodb')
 
+//TODO: instances
 const app = express();
 
 
@@ -11,13 +14,15 @@ const app = express();
 app.use(morgan('dev')); // TODO: ver por consola las peticiones
 app.use(cors()) // TODO: uso de cors entre servidores
 app.use(express.json()); //TODO: Para recibir jsons
-
+app.use(session({
+    secret: 'mysecretsession',
+    resave:false,
+    saveUninitialized:true
+}))
 
 
 //ROUTES
 app.use('/api', indexRoute)
-
-
 
 
 
@@ -36,9 +41,11 @@ function starServer(){
         });
 
     }catch (error){
-        console.log(`********ERROR DE SERVIDOR **********`);
+        console.log(`********   ERROR DE SERVIDOR **********`);
     }
 }
 
+
 //TODO: inicializadores
-starServer();
+starServer(); //TODO: start the server
+mongoDB(); //TODO: star conexion to mongo
