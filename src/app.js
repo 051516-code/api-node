@@ -6,7 +6,7 @@ const indexRoute = require('./routes')
 const session = require('express-session')
 const mongoDB = require('./config/noSql/mongodb')
 
-//TODO: instances
+//TODO: initializations
 const app = express();
 
 
